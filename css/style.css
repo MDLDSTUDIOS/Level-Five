@@ -1,0 +1,238 @@
+.logoo {
+    display: block !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    max-width: 10% !important;
+    height: auto !important; 
+}
+
+
+
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 20px;
+    background-color: rgb(4, 0, 24);
+    color: aliceblue;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* ENCABEZADO */
+
+header {
+    margin-bottom: 35px;
+}
+
+h1 {
+    text-align: center;
+    color: aliceblue;
+    text-shadow: 3px 2px 5px rgba(252, 252, 252, 0.5);
+    margin-bottom: 5px;
+}
+
+.subtitulo {
+    text-align: center;
+    color: #aebbd5;
+    font-size: 14px;
+}
+
+/* CONTENIDO PRINCIPAL */
+
+main {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+h2 {
+    text-align: left;
+    color: aliceblue;
+    margin-bottom: 8px;
+}
+
+.descripcion {
+    color: #b8c1d5;
+    font-size: 14px;
+    margin-bottom: 25px;
+}
+
+/* FORMULARIO */
+
+.formulario {
+    padding: 22px;
+    background-color: rgba(17, 13, 43, 0.95);
+    border: 1px solid rgba(190, 210, 255, 0.18);
+    border-radius: 10px;
+}
+
+h3 {
+    text-align: left;
+    color: aliceblue;
+    font-size: 16px;
+    margin-top: 22px;
+    margin-bottom: 10px;
+}
+
+h3:first-child {
+    margin-top: 0;
+}
+
+h3 span {
+    color: #aebbd5;
+    font-size: 12px;
+    font-weight: normal;
+}
+
+/* CAMPOS */
+
+#nombre,
+#fecha {
+    display: block;
+    width: 100%;
+    max-width: 320px;
+    padding: 12px 16px;
+    font-family: inherit;
+    font-size: 16px;
+    color: #333333;
+    background-color: #f9fafb;
+    border: 2px solid #d1d5db;
+    border-radius: 8px;
+    outline: none;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+#nombre:focus,
+#fecha:focus {
+    border-color: #8ebcff;
+    box-shadow: 0 0 0 3px rgba(142, 188, 255, 0.2);
+}
+
+#fecha {
+    cursor: pointer;
+}
+
+/* HORARIOS */
+
+.ayuda {
+    color: #b8c1d5;
+    font-size: 13px;
+    margin-bottom: 12px;
+}
+
+#horariosDisponibles {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 150px));
+    gap: 9px;
+}
+
+#horariosDisponibles button {
+    cursor: pointer;
+    width: 100%;
+    padding: 9px 10px;
+    font-size: 17px;
+    color: #000000;
+    background-color: #dbedff;
+    border: 1px solid #bfdaff;
+    border-radius: 8px;
+    outline: none;
+    transition: background-color 0.2s ease,
+                border-color 0.2s ease;
+}
+
+#horariosDisponibles button:hover {
+    background-color: #c3e0ff;
+    border-color: #9fcaff;
+}
+
+/* SEPARADOR */
+
+.separador {
+    height: 1px;
+    background-color: rgba(190, 210, 255, 0.18);
+    margin: 25px 0 18px;
+}
+
+/* RESERVAR */
+
+#btnReservar {
+    cursor: pointer;
+    width: 100%;
+    max-width: 170px;
+    padding: 10px 16px;
+    font-size: 16px;
+    color: #000000;
+    background-color: #00c400;
+    border: 2px solid #00bb19;
+    border-radius: 8px;
+    outline: none;
+    transition: background-color 0.2s ease;
+}
+
+#btnReservar:hover {
+    background-color: #91f791;
+}
+
+#btnReservar:active {
+    transform: scale(0.98);
+}
+
+/* MENSAJES DE FIREBASE */
+
+#mensaje {
+    margin-top: 16px;
+    font-size: 14px;
+    line-height: 1.5;
+    color: aliceblue;
+}
+
+/* PIE DE PAGINA */
+
+footer {
+    margin-top: 45px;
+    text-align: center;
+    color: #8590aa;
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+/* CELULARES */
+
+@media (max-width: 600px) {
+
+    body {
+        padding: 14px;
+    }
+
+    header {
+        margin-bottom: 28px;
+    }
+
+    h1 {
+        font-size: 25px;
+    }
+
+    .formulario {
+        padding: 17px;
+    }
+
+    #nombre,
+    #fecha {
+        max-width: 100%;
+    }
+
+    #horariosDisponibles {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    #horariosDisponibles button {
+        font-size: 16px;
+    }
+
+    #btnReservar {
+        max-width: 100%;
+    }
+}

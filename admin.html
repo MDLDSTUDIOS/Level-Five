@@ -1,0 +1,70 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Level Five Barber - Administración</title>
+    <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+
+    <img src="images/lf.png" alt="Logo" class="loggoo" />
+
+
+    <h1>Barber Level Five </h1>
+    <h2>Panel ADMIN</h2>
+
+    <section id="login">
+        <h3>Iniciar sesión</h3>
+
+        <input
+            type="email"
+            id="correo"
+            placeholder="Correo electrónico"
+        >
+
+        <input
+            type="password"
+            id="contrasena"
+            placeholder="Contraseña"
+        >
+
+        <button id="btnLogin">Ingresar</button>
+        <p id="mensajeLogin"></p>
+    </section>
+
+    <section id="panel" hidden>
+        <h3>Solicitudes de reservación</h3>
+
+        <button id="btnActualizar">Actualizar solicitudes</button>
+        <button id="btnBorrarCache">Borrar caché</button>
+        <button id="btnCerrarSesion">Cerrar sesión</button>
+
+        <div id="listaReservaciones"></div>
+    </section>
+
+    <section id="modalBorrarCache" hidden>
+        <h3>Eliminar datos guardados</h3>
+
+        <p>
+            Esta acción eliminará todas las reservaciones y los horarios
+            ocupados. No podrás recuperar estos datos.
+        </p>
+
+        <input
+            type="password"
+            id="contrasenaBorrarCache"
+            placeholder="Confirma tu contraseña"
+        >
+
+        <button id="btnConfirmarBorrado">Confirmar borrado</button>
+        <button id="btnCancelarBorrado">Cancelar</button>
+
+        <p id="mensajeBorrarCache"></p>
+    </section>
+
+    <script type="module" src="admin.js"></script>
+
+</body>
+</html>

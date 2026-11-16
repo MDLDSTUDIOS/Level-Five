@@ -1,0 +1,254 @@
+
+.loggoo {
+    display: block !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    max-width: 10% !important;
+    height: auto !important; 
+}
+
+
+
+
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 25px;
+    background-color: rgb(4, 0, 24);
+    color: aliceblue;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+
+h1 {
+    text-align: center;
+    color: aliceblue;
+    text-shadow: 3px 2px 5px rgba(252, 252, 252, 0.5);
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+h2 {
+    text-align: center;
+    color: aliceblue;
+    font-size: 21px;
+    margin-top: 25px;
+    font-weight: bold;
+}
+
+h3 {
+    text-align: left;
+    color: aliceblue;
+    margin-bottom: 15px;
+}
+
+/* SECCIONES */
+
+#login,
+#panel,
+#modalBorrarCache {
+    width: 100%;
+    max-width: 850px;
+    margin: 25px auto;
+    padding: 22px;
+    background-color: rgba(17, 13, 43, 0.95);
+    border: 1px solid rgba(190, 210, 255, 0.18);
+    border-radius: 10px;
+}
+
+/* CAMPOS */
+
+input {
+    display: block;
+    width: 100%;
+    max-width: 320px;
+    padding: 12px 16px;
+    margin-bottom: 12px;
+    font-family: inherit;
+    font-size: 16px;
+    color: #333333;
+    background-color: #f9fafb;
+    border: 2px solid #d1d5db;
+    border-radius: 8px;
+    outline: none;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+input:focus {
+    border-color: #8ebcff;
+    box-shadow: 0 0 0 3px rgba(142, 188, 255, 0.2);
+}
+
+/* BOTONES GENERALES */
+
+button {
+    cursor: pointer;
+    margin: 4px 4px 5px 0;
+    padding: 8px 14px;
+    font-family: inherit;
+    font-size: 16px;
+    color: #000000;
+    background-color: #dbedff;
+    border: 1px solid #bfdaff;
+    border-radius: 8px;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+button:hover {
+    background-color: #c3e0ff;
+    border-color: #9fcaff;
+}
+
+button:active {
+    transform: scale(0.98);
+}
+
+/* BOTON DE INICIAR SESION */
+
+#btnLogin {
+    background-color: #adffad;
+    border: 2px solid #96f7a3;
+    padding: 9px 18px;
+}
+
+#btnLogin:hover {
+    background-color: #91f791;
+}
+
+/* BOTONES DEL PANEL */
+
+#btnActualizar {
+    background-color: #ffffff;
+}
+
+#btnBorrarCache {
+    background-color: #ffffff;
+    border-color: #ff0000;
+    font-weight: bold;
+    color: red;
+}
+
+#btnBorrarCache:hover {
+    background-color: #fcfafa;
+    
+}
+
+#btnCerrarSesion {
+    background-color: #ffffff;
+    border-color: #cccccc;
+}
+
+/* LISTA DE RESERVACIONES */
+
+#listaReservaciones {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 14px;
+    margin-top: 20px;
+}
+
+/* TARJETAS DE RESERVACION */
+
+#listaReservaciones article,
+#listaReservaciones > div {
+    padding: 16px;
+    background-color: rgb(28, 24, 57);
+    border: 1px solid rgba(190, 210, 255, 0.2);
+    border-radius: 9px;
+}
+
+#listaReservaciones h3 {
+    margin-top: 0;
+    color: #d5e8ff;
+}
+
+#listaReservaciones p {
+    color: #e0e5f0;
+    line-height: 1.6;
+    font-size: 15px;
+}
+
+
+#listaReservaciones button:first-of-type {
+    background-color: #00c400;
+    border-color: #005200;
+    color: rgb(2, 29, 0);
+    font-weight: bold;
+}
+
+#listaReservaciones button:last-of-type {
+    background-color: #d80000;
+    border-color: #4d0000;
+    color: rgb(58, 0, 0);
+    font-weight: bold;
+}
+
+
+#modalBorrarCache {
+    max-width: 430px;
+}
+
+#modalBorrarCache p {
+    color: #d4d4e0;
+    line-height: 1.5;
+}
+
+#btnConfirmarBorrado {
+    background-color: #ffdada;
+    border-color: #f3baba;
+}
+
+#btnCancelarBorrado {
+    background-color: #e4e4e4;
+}
+
+/* MENSAJES */
+
+#mensajeLogin,
+#mensajeBorrarCache {
+    font-size: 14px;
+    margin-top: 12px;
+}
+
+/* ELEMENTOS OCULTOS */
+
+[hidden] {
+    display: none !important;
+}
+
+/* CELULARES */
+
+@media (max-width: 600px) {
+
+    body {
+        padding: 12px;
+    }
+
+    #login,
+    #panel,
+    #modalBorrarCache {
+        padding: 16px;
+        margin-top: 18px;
+    }
+
+    h1 {
+        font-size: 26px;
+    }
+
+    #listaReservaciones {
+        grid-template-columns: 1fr;
+    }
+
+    #panel > button {
+        max-width: 100%;
+        margin-bottom: 8px;
+    }
+
+    input {
+        max-width: 100%;
+    }
+}
