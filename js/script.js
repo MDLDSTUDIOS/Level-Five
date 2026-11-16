@@ -9,7 +9,7 @@ import {
     serverTimestamp
 } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-firestore.js";
 
-// CONFIGURACIÓN DE FIREBASE
+
 const firebaseConfig = {
     apiKey: "AIzaSyD9oCEAx85fCc_7iXf44wRJJt7TnSwb2UM",
     authDomain: "level-five-barber-ca1b7.firebaseapp.com",
@@ -19,13 +19,65 @@ const firebaseConfig = {
     appId: "1:382628281931:web:c24c582751d145d7a4d7ce"
 };
 
-// INICIALIZAR FIREBASE
+
+
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
 console.log("Firebase conectado correctamente");
 
-// ELEMENTOS HTML
+
+
+let codigoSecreto = "";
+
+const codigoCorrecto = "BLFA";
+
+document.addEventListener("keydown", function(event) {
+
+
+    const elemento = event.target;
+
+    if (
+        elemento.tagName === "INPUT" ||
+        elemento.tagName === "TEXTAREA" ||
+        elemento.tagName === "SELECT" ||
+        elemento.isContentEditable
+    ) {
+        codigoSecreto = "";
+        return;
+    }
+
+
+    if (
+        event.ctrlKey ||
+        event.altKey ||
+        event.metaKey ||
+        event.key.length !== 1
+    ) {
+        return;
+    }
+
+
+    codigoSecreto += event.key.toUpperCase();
+
+
+    codigoSecreto = codigoSecreto.slice(-codigoCorrecto.length);
+
+    console.log("Código:", codigoSecreto);
+
+
+    if (codigoSecreto === codigoCorrecto) {
+
+        console.log("Acceso al administrador");
+
+        window.location.href = "admin.html";
+
+        codigoSecreto = "";
+    }
+
+});
+
+
 const nombre = document.getElementById("nombre");
 const fecha = document.getElementById("fecha");
 const horarios = document.getElementById("horariosDisponibles");
@@ -34,7 +86,7 @@ const mensaje = document.getElementById("mensaje");
 
 let horarioSeleccionado = null;
 
-// SELECCIONAR HORARIO
+
 horarios.addEventListener("click", function(event) {
 
     if (event.target.tagName !== "BUTTON") {
@@ -61,14 +113,14 @@ horarios.addEventListener("click", function(event) {
 
 });
 
-// ENVIAR RESERVACIÓN
+
 btnReservar.addEventListener("click", async function() {
 
     const nombreCliente = nombre.value.trim();
     const fechaReserva = fecha.value;
     const horaReserva = horarioSeleccionado;
 
-    // VALIDAR NOMBRE
+
     if (!nombreCliente) {
         mensaje.textContent = "Ingresa tu nombre.";
         return;
@@ -79,13 +131,13 @@ btnReservar.addEventListener("click", async function() {
         return;
     }
 
-    // VALIDAR FECHA
+
     if (!fechaReserva) {
         mensaje.textContent = "Selecciona una fecha.";
         return;
     }
 
-    // VALIDAR HORARIO
+
     if (!horaReserva) {
         mensaje.textContent = "Selecciona un horario.";
         return;
@@ -107,13 +159,13 @@ btnReservar.addEventListener("click", async function() {
         return;
     }
 
-    // DESACTIVAR BOTÓN
+
     btnReservar.disabled = true;
     mensaje.textContent = "Comprobando disponibilidad...";
 
     try {
 
-        // CREAR REFERENCIAS
+
         const reservaRef = doc(collection(db, "reservaciones"));
 
         const horarioId = `${fechaReserva}_${horaReserva}`;
@@ -124,17 +176,15 @@ btnReservar.addEventListener("click", async function() {
             horarioId
         );
 
-        // TRANSACCIÓN: RESERVACIÓN + BLOQUEO
         await runTransaction(db, async (transaction) => {
 
-            // PRIMERO LEER EL HORARIO
             const horarioActual = await transaction.get(horarioRef);
 
             if (horarioActual.exists()) {
                 throw new Error("HORARIO_OCUPADO");
             }
 
-            // CREAR RESERVACIÓN
+        
             transaction.set(reservaRef, {
                 nombre: nombreCliente,
                 fecha: fechaReserva,
@@ -143,7 +193,7 @@ btnReservar.addEventListener("click", async function() {
                 creadoEn: serverTimestamp()
             });
 
-            // BLOQUEAR HORARIO
+
             transaction.set(horarioRef, {
                 reservaId: reservaRef.id,
                 fecha: fechaReserva,
@@ -159,7 +209,7 @@ btnReservar.addEventListener("click", async function() {
         mensaje.textContent =
             "¡Solicitud enviada correctamente! Espera la confirmación del barbero.";
 
-        // LIMPIAR FORMULARIO
+
         nombre.value = "";
         horarioSeleccionado = null;
 
