@@ -1,12 +1,9 @@
+
 const { initializeApp, cert } = require("firebase-admin/app");
 const { getFirestore, FieldValue } = require("firebase-admin/firestore");
 const { getMessaging } = require("firebase-admin/messaging");
 
-// Cargar credenciales de Firebase desde GitHub Secrets
-const serviceAccount = JSON.parse(
-    process.env.FIREBASE_SERVICE_ACCOUNT
-);
-
+const serviceAccount = JSON.parse(process.env.FIREBASE_SERVICE_ACCOUNT);
 const deviceToken = process.env.FCM_DEVICE_TOKEN;
 
 initializeApp({
@@ -19,24 +16,25 @@ const messaging = getMessaging();
 async function enviarNotificaciones() {
     try {
         if (!deviceToken) {
-            throw new Error("No se encontró el token del dispositivo.");
+            throw new Error("Falta el token FCM.");
         }
 
-        // Buscar reservaciones pendientes
+        console.log("Proyecto Firebase:", serviceAccount.project_id);
+
         const resultado = await db
             .collection("reservaciones")
             .where("estado", "==", "pendiente")
             .get();
 
+        console.log("Reservaciones pendientes encontradas:", resultado.size);
+
         for (const documento of resultado.docs) {
             const reserva = documento.data();
 
-            // Evitar notificar dos veces la misma reserva
             if (reserva.notificacionEnviada === true) {
                 continue;
             }
 
-            // Enviar notificación al teléfono
             await messaging.send({
                 token: deviceToken,
                 notification: {
@@ -45,23 +43,18 @@ async function enviarNotificaciones() {
                 }
             });
 
-            // Marcar la reserva como notificada
             await documento.ref.update({
                 notificacionEnviada: true,
-                notificacionEnviadaEn:
-                   FieldValue.serverTimestamp()
+                notificacionEnviadaEn: FieldValue.serverTimestamp()
             });
 
-            console.log(
-                "Notificación enviada:",
-                documento.id
-            );
+            console.log("Notificación enviada:", documento.id);
         }
 
         console.log("Proceso terminado correctamente.");
 
     } catch (error) {
-        console.error("Error al enviar notificaciones:", error);
+        console.error("ERROR:", error);
         process.exitCode = 1;
     }
 }
