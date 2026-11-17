@@ -1,4 +1,6 @@
-const admin = require("firebase-admin");
+const { initializeApp, cert } = require("firebase-admin/app");
+const { getFirestore, FieldValue } = require("firebase-admin/firestore");
+const { getMessaging } = require("firebase-admin/messaging");
 
 // Cargar credenciales de Firebase desde GitHub Secrets
 const serviceAccount = JSON.parse(
