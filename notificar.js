@@ -9,13 +9,12 @@ const serviceAccount = JSON.parse(
 
 const deviceToken = process.env.FCM_DEVICE_TOKEN;
 
-// Iniciar Firebase Admin
-admin.initializeApp({
-    credential: admin.credential.cert(serviceAccount)
+initializeApp({
+    credential: cert(serviceAccount)
 });
 
-const db = admin.firestore();
-const messaging = admin.messaging();
+const db = getFirestore();
+const messaging = getMessaging();
 
 async function enviarNotificaciones() {
     try {
@@ -50,7 +49,7 @@ async function enviarNotificaciones() {
             await documento.ref.update({
                 notificacionEnviada: true,
                 notificacionEnviadaEn:
-                    admin.firestore.FieldValue.serverTimestamp()
+                   FieldValue.serverTimestamp()
             });
 
             console.log(
