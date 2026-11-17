@@ -18,6 +18,9 @@ jobs:
         with:
           node-version: 22
 
+      - name: Instalar Firebase Admin
+        run: npm install firebase-admin
+
       - name: Ejecutar notificaciones
         run: node notificar.js
         env:
